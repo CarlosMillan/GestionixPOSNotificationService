@@ -20,21 +20,21 @@ namespace GestionixPOSNotificationLib
 	void Exit();
 
 	[OperationContract(IsOneWay = true)]
-	void NotifyChanges();
+	void NotifyChanges(string apikey);
   }
 
   public interface IPOSSyncNotificationCallBack
   {
 	[OperationContract(IsOneWay = true)]
-	void IsAuthenticated(bool Authenticated);
+	void IsAuthenticated(bool authenticated);
 
 	[OperationContract(IsOneWay = true)]
-	void AvailableChanges();
+	void AvailableChanges(bool available);
   }
   
   public class UserCompany
   {
 	public string APIKey { get; set; }
-	public IPOSSyncNotificationCallBack channel { get; set; }
+	public IPOSSyncNotificationCallBack Channel { get; set; }
   }
 }

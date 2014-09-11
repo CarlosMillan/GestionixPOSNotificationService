@@ -38,8 +38,8 @@ namespace GestionixPOSNotificationLib
 	{
 	  if (_subscribers.Exists(x => x.APIKey.Equals(apikey)))
 	  {
-		IPOSSyncNotificationCallBack Callback = _subscribers.Find(x => x.APIKey.Equals(apikey)).channel;
-		Callback.AvailableChanges();
+		IPOSSyncNotificationCallBack Callback = _subscribers.Find(x => x.APIKey.Equals(apikey)).Channel;
+		Callback.AvailableChanges(true);
 	  }
 	}
 	#endregion
@@ -60,9 +60,9 @@ namespace GestionixPOSNotificationLib
 	{
 	  try
 	  {
-		if (!_subscribers.Exists(x => x.channel == callback))
+		if (!_subscribers.Exists(x => x.Channel == callback))
 		{
-		  _subscribers.Add(new UserCompany() { APIKey = apikey });
+		  _subscribers.Add(new UserCompany() { APIKey = apikey, Channel = callback });
 		}
 	  }
 	  catch{}
@@ -72,7 +72,7 @@ namespace GestionixPOSNotificationLib
 	{
 	  try
 	  {
-		_subscribers.Remove(_subscribers.Find(x => x.channel == callback));
+		_subscribers.Remove(_subscribers.Find(x => x.Channel == callback));
 	  }
 	  catch {}
 	}
